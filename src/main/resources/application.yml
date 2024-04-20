@@ -1,3 +1,60 @@
-spring.application.name=job
-server.port=9090
+server:
+  port: 9090
 
+spring:
+  application:
+    name: Spring Job
+    description: joboard
+    version: 1.0
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:postgresql://localhost:5433/job
+    username: postgres
+    password: 12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    default-encoding: UTF-8
+    username: viethung0106.developer@gmail.com
+    password: xwkvhbfbfnhsgugl
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+
+app:
+  secret: aLongSecretStringWhoseBitnessIsEqualToOrGreaterThanTheBitnessOfTheTokenEncryptionAlgorithm
+  jwt:
+    token:
+      expires-in: 3600000
+    refresh-token:
+      expires-in: 86400000
+    remember-me:
+      expires-in: 604800000
+  default-locale: en
+  default-timezone: Asia/Ho_Chi_Minh
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /swagger-ui
+    disable-swagger-default-url: true
+  show-actuator: true
