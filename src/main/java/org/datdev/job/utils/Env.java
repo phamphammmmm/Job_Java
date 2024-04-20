@@ -1,4 +1,4 @@
-package org.datdev.job.shareds;
+package org.datdev.job.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

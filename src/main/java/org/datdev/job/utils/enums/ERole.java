@@ -1,6 +1,4 @@
-package org.datdev.job.shareds.enums;
-
-import lombok.Data;
+package org.datdev.job.utils.enums;
 
 public enum ERole {
     ADMIN("ADMIN"),
