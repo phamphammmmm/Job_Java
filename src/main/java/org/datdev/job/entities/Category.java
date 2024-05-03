@@ -14,10 +14,6 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 public class Category extends _BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @NotBlank(message = "Category name is required.")
     private String name = "";
 

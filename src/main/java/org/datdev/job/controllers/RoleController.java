@@ -1,6 +1,7 @@
 package org.datdev.job.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.datdev.job.DTO.role.RoleDTO;
 import org.datdev.job.entities.Role;
 import org.datdev.job.services.Role.IRoleService;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,8 @@ public class RoleController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<Role>> createRole(@RequestBody Role role) {
-        return roleService.createRoleAsync(role)
+    public CompletableFuture<ResponseEntity<Role>> createRole(@RequestBody RoleDTO roleDto) {
+        return roleService.createRoleAsync(roleDto)
                 .thenApply(createdRole -> ResponseEntity.ok(createdRole.orElse(null)))
                 .exceptionally(e -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));
     }

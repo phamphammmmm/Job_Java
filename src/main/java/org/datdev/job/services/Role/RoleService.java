@@ -39,8 +39,10 @@ public class RoleService implements IRoleService {
 
     @Override
     @Transactional
-    public CompletableFuture<Optional<Role>> createRoleAsync(Role role){
-        return CompletableFuture.supplyAsync(() -> Optional.of(roleRepository.save(role)));
+    public CompletableFuture<Optional<Role>> createRoleAsync(RoleDTO roleDto){
+        Role newRole = new Role();
+        newRole.setName(roleDto.getName());
+        return CompletableFuture.supplyAsync(() -> Optional.of(roleRepository.save(newRole)));
     }
 
     @Override
