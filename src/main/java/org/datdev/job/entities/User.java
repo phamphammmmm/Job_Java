@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 public class User extends _BaseEntity{
-
     @Column(name = "fullname", nullable = false)
     private String fullname;
 
@@ -37,4 +36,18 @@ public class User extends _BaseEntity{
 
     @Column(name = "image_path")
     private String imagePath;
+
+    public double getName() {
+        return 0;
+    }
+
+    public double getRole() {
+        return 0;
+    }
+
+    public void setName(String stringCellValue) {
+    }
+
+    public void setRole(String stringCellValue) {
+    }
 }

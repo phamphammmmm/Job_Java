@@ -14,5 +14,5 @@ import lombok.*;
 @Data
 public class Role  extends _BaseEntity {
     @NotBlank(message = "Name is required")
-    private String Name;
+    private String name;
 }

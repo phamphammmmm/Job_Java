@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9091
 
 spring:
   application:
@@ -9,7 +9,7 @@ spring:
   main:
     allow-circular-references: true
   datasource:
-    url: jdbc:postgresql://localhost:5433/job
+    url: jdbc:postgresql://localhost:5432/job
     username: postgres
     password: 12345678
   jpa:
@@ -55,6 +55,6 @@ springdoc:
     enabled: true
     operations-sorter: alpha
     tags-sorter: alpha
-    path: /swagger-ui
+    path: /swagger
     disable-swagger-default-url: true
   show-actuator: true

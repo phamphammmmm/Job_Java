@@ -14,9 +14,10 @@ public interface IUserService {
 
     CompletableFuture<Optional<User>> getUserByIdAsync(int id);
 
-    CompletableFuture<Optional<User>> createUserAsync(UserDTO user);
+    CompletableFuture<User> createUserAsync(UserDTO userDTO);
 
     CompletableFuture<Optional<User>> updateUserAsync(int id, UserDTO user);
 
     CompletableFuture<Void> deleteUserAsync(int id);
+    CompletableFuture<String> uploadFileFromBase64(String base64String, String extension);
 }

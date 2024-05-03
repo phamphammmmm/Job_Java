@@ -23,4 +23,10 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
+
+    // Constructors
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
+    }
 }

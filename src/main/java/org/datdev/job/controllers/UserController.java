@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping
     public CompletableFuture<ResponseEntity<User>> createUser(@RequestBody UserDTO userDTO) {
         return userService.createUserAsync(userDTO)
-                .thenApply(user -> ResponseEntity.ok(user.orElse(null)))
+                .thenApply(ResponseEntity::ok)
                 .exceptionally(e -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));
     }
 
