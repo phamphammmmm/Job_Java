@@ -34,6 +34,7 @@ public class User extends _BaseEntity{
     @Column(name = "is_premium", columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isPremium;
 
+    @Setter
     @Column(name = "image_path")
     private String imagePath;
 
@@ -50,4 +51,5 @@ public class User extends _BaseEntity{
 
     public void setRole(String stringCellValue) {
     }
+
 }

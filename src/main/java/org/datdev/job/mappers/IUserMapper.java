@@ -18,7 +18,6 @@ public interface IUserMapper {
     @Mapping(target = "birthday", source = "birthday")
     @Mapping(target = "description", source = "description")
     @Mapping(target = "isPremium", source = "isPremium")
-    @Mapping(target = "imagePath", source = "imagePath")
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
 

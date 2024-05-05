@@ -1,6 +1,7 @@
 package org.datdev.job.services.Category;
 
 import lombok.RequiredArgsConstructor;
+import org.datdev.job.DTO.category.CategoryDTO;
 import org.datdev.job.entities.Category;
 import org.datdev.job.repositories.Category.ICategoryRepository;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,12 @@ public class CategoryService implements ICategoryService {
 
     @Override
     @Transactional
-    public CompletableFuture<Optional<Category>> createCategoryAsync(Category category) {
-        return CompletableFuture.supplyAsync(() -> Optional.of(categoryRepository.save(category)));
+    public CompletableFuture<Optional<Category>> createCategoryAsync(CategoryDTO category) {
+        Category categoryEntity = new Category();
+        categoryEntity.setName(category.getName());
+        categoryEntity.setTrending(category.getTrending());
+        categoryEntity.setImagePreviewPath(category.getImagePreviewPath());
+        return CompletableFuture.supplyAsync(() -> Optional.of(categoryRepository.save(categoryEntity)));
     }
 
     @Override

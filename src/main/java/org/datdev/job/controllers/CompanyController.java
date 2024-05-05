@@ -2,6 +2,7 @@ package org.datdev.job.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.datdev.job.entities.Company;
+import org.datdev.job.entities.Role;
 import org.datdev.job.services.Category.ICompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/companies")
 @RequiredArgsConstructor
@@ -21,6 +22,12 @@ public class CompanyController {
     public CompletableFuture<ResponseEntity<List<Optional<Company>>>> getAllCompanies() {
         return companyService.getAllCompaniesAsync()
                 .thenApply(categories -> new ResponseEntity<>(categories, HttpStatus.OK));
+    }
+
+    @GetMapping("/{id}")
+    public CompletableFuture<ResponseEntity<Optional<Company>>> getCompanyById(@PathVariable int id) {
+        return companyService.getCompanyByIdAsync(id)
+                .thenApply(company -> new ResponseEntity<>(company, HttpStatus.OK));
     }
 
     @PostMapping

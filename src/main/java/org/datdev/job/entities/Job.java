@@ -3,6 +3,7 @@ package org.datdev.job.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "jobs")
@@ -58,59 +59,4 @@ public class Job extends _BaseEntity {
     @Column(name = "image_path")
     private String imagePath;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setEmailContact(String emailContact) {
-        this.emailContact = emailContact;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setSkill(String skill) {
-        this.skill = skill;
-    }
-
-    public void setRequirement(String requirement) {
-        this.requirement = requirement;
-    }
-
-    public void setWorkTime(String workTime) {
-        this.workTime = workTime;
-    }
-
-    public void setBenefits(String benefits) {
-        this.benefits = benefits;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 }

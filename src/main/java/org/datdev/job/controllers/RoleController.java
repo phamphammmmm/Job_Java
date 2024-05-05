@@ -25,6 +25,12 @@ public class RoleController {
                 .thenApply(roles -> new ResponseEntity<>(roles, HttpStatus.OK));
     }
 
+    @GetMapping("/{id}")
+    public CompletableFuture<ResponseEntity<Optional<Role>>> getRoleById(@PathVariable int id) {
+        return roleService.getRoleByIdAsync(id)
+                .thenApply(role -> new ResponseEntity<>(role, HttpStatus.OK));
+    }
+
     @PostMapping
     public CompletableFuture<ResponseEntity<Role>> createRole(@RequestBody RoleDTO roleDto) {
         return roleService.createRoleAsync(roleDto)

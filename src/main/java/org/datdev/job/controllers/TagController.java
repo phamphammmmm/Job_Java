@@ -1,6 +1,8 @@
 package org.datdev.job.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.datdev.job.DTO.Tag.TagDTO;
+import org.datdev.job.entities.Role;
 import org.datdev.job.entities.Tag;
 import org.datdev.job.services.Tag.ITagService;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/tags")
 @RequiredArgsConstructor
@@ -23,8 +25,14 @@ public class TagController {
                 .thenApply(roles -> new ResponseEntity<>(roles, HttpStatus.OK));
     }
 
+    @GetMapping("/{id}")
+    public CompletableFuture<ResponseEntity<Optional<Tag>>> getTagById(@PathVariable int id) {
+        return tagService.getTagByIdAsync(id)
+                .thenApply(tag -> new ResponseEntity<>(tag, HttpStatus.OK));
+    }
+
     @PostMapping
-    public CompletableFuture<ResponseEntity<Tag>> createRole(@RequestBody Tag tag) {
+    public CompletableFuture<ResponseEntity<Tag>> createRole(@RequestBody TagDTO tag) {
         return tagService.createTagAsync(tag)
                 .thenApply(createdRole -> ResponseEntity.ok(createdRole.orElse(null)))
                 .exceptionally(e -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));

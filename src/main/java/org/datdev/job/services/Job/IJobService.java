@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-@Service
 public interface IJobService{
     CompletableFuture<List<Optional<Job>>> getAllJobsAsync();
 
     CompletableFuture<Optional<Job>> getJobByIdAsync(int id);
 
-    CompletableFuture<Optional<JobDTO>> createJobAsync(JobDTO jobDTO);
+    CompletableFuture<Optional<Job>> createJobAsync(Job Job);
 
     CompletableFuture<Optional<Job>> updateJobAsync(int id, Job job);
 

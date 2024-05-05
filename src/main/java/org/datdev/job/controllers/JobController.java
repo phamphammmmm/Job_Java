@@ -3,6 +3,7 @@ package org.datdev.job.controllers;
 import lombok.RequiredArgsConstructor;
 import org.datdev.job.DTO.job.JobDTO;
 import org.datdev.job.entities.Job;
+import org.datdev.job.entities.Role;
 import org.datdev.job.services.Job.IJobService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/jobs")
 @RequiredArgsConstructor
@@ -23,11 +24,15 @@ public class JobController {
         return jobService.getAllJobsAsync()
                 .thenApply(jobs -> new ResponseEntity<>(jobs, HttpStatus.OK));
     }
-
+    @GetMapping("/{id}")
+    public CompletableFuture<ResponseEntity<Optional<Job>>> getJobById(@PathVariable int id) {
+        return jobService.getJobByIdAsync(id)
+                .thenApply(job -> new ResponseEntity<>(job, HttpStatus.OK));
+    }
     @PostMapping
-    public CompletableFuture<ResponseEntity<JobDTO>> createJob(@RequestBody JobDTO jobDTO) {
+    public CompletableFuture<ResponseEntity<Job>> createJob(@RequestBody Job Job) {
         try {
-            return jobService.createJobAsync(jobDTO)
+            return jobService.createJobAsync(Job)
                     .thenApply(createdJob -> ResponseEntity.ok(createdJob.orElse(null)))
                     .exceptionally(e -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));
         } catch (Exception e) {

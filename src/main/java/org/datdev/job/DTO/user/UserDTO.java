@@ -2,6 +2,10 @@ package org.datdev.job.DTO.user;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -26,5 +30,5 @@ public class UserDTO {
 
     private Boolean isPremium;
 
-    private String imagePath;
+//    private MultipartFile avatarImageFile;
 }

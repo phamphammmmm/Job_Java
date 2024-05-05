@@ -3,7 +3,9 @@ package org.datdev.job.controllers;
 import com.google.zxing.WriterException;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.datdev.job.DTO.category.CategoryDTO;
 import org.datdev.job.entities.Category;
+import org.datdev.job.entities.Company;
 import org.datdev.job.services.Category.ICategoryService;
 import org.datdev.job.services.Excel.IExcelService;
 import org.datdev.job.services.QRCode.IQrCodeService;
@@ -33,21 +35,15 @@ public class CategoryController {
                 .thenApply(categories -> new ResponseEntity<>(categories, HttpStatus.OK));
     }
 
+    @GetMapping("/{id}")
+    public CompletableFuture<ResponseEntity<Optional<Category>>> getCategoriesById(@PathVariable int id) {
+        return categoryService.getCategoryByIdAsync(id)
+                .thenApply(categories -> new ResponseEntity<>(categories, HttpStatus.OK));
+    }
     @PostMapping
-    public CompletableFuture<ResponseEntity<Category>> createCategory(@RequestBody Category category) {
+    public CompletableFuture<ResponseEntity<Category>> createCategory(@RequestBody CategoryDTO category) {
         return categoryService.createCategoryAsync(category)
                 .thenApply(createdCategory -> {
-                    if (createdCategory.isPresent()) {
-                        // Tạo mã QR cho category vừa tạo
-                        String qrCodeUrl = null;
-                        try {
-                            qrCodeUrl = qrCodeService.generateQRCodeUrl("Category: " + createdCategory.get().getName(), "category_" + createdCategory.get().getId());
-                        } catch (IOException | WriterException e) {
-                            e.printStackTrace();
-                        }
-                        // Cập nhật URL mã QR vào category
-                        createdCategory.get().setQrCodeUrl(qrCodeUrl);
-                    }
                     return ResponseEntity.ok(createdCategory.orElse(null));
                 })
                 .exceptionally(e -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));

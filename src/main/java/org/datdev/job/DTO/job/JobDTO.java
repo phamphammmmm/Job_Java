@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class JobDTO {
     private String title;
-    private int userId;
-    private int companyId;
-    private int categoryId;
+    private Integer userId;
+    private Integer companyId;
+    private Integer categoryId;
     private String description;
     private String emailContact;
     private String location;

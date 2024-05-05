@@ -8,14 +8,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "userroles")
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Data
 
-public class UserRole {
-    @Id
-    private int id;
-
+public class UserRole extends _BaseEntity{
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

@@ -1,5 +1,6 @@
 package org.datdev.job.services.Tag;
 
+import org.datdev.job.DTO.Tag.TagDTO;
 import org.datdev.job.entities.Tag;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public interface ITagService {
 
     CompletableFuture<Optional<Tag>> getTagByIdAsync(int id);
 
-    CompletableFuture<Optional<Tag>> createTagAsync(Tag tag);
+    CompletableFuture<Optional<Tag>> createTagAsync(TagDTO tag);
 
     CompletableFuture<Optional<Tag>> updateTagAsync(int id, Tag tag);
 

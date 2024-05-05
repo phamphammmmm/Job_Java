@@ -2,6 +2,7 @@ package org.datdev.job.services.Tag;
 
 import lombok.RequiredArgsConstructor;
 
+import org.datdev.job.DTO.Tag.TagDTO;
 import org.datdev.job.entities.Role;
 import org.datdev.job.entities.Tag;
 import org.datdev.job.repositories.Tag.ITagRepository;
@@ -36,8 +37,10 @@ public class TagService implements ITagService {
 
     @Override
     @Transactional
-    public CompletableFuture<Optional<Tag>> createTagAsync(Tag tag){
-        return CompletableFuture.supplyAsync(() -> Optional.of(tagRepository.save(tag)));
+    public CompletableFuture<Optional<Tag>> createTagAsync(TagDTO tag){
+        Tag newTag = new Tag();
+        newTag.setName(tag.Name);
+        return CompletableFuture.supplyAsync(() -> Optional.of(tagRepository.save(newTag)));
     }
 
     @Override
